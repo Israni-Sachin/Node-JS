@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+}
+
+.bgimg-1 {
+  position: relative;
+  opacity: 1;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgimg-1 {
+  /* background-image: url(https://wallpapers.com/images/hd/4k-tech-twtykjtj0sv4hi62.jpg); */
+  /* background-image: url(https://rare-gallery.com/thumbs/954651-keyboards-tech-dark-numbers-red.jpg); */
+  background-image: url(https://e0.pxfuel.com/wallpapers/274/350/desktop-wallpaper-simple-tech-1900x1080.jpg);
+  min-height: 100%;
+  /* opacity: .9; */
+}
+
+header {
+  position: fixed;
+  top: 28%;
+  margin-left: 20px;
+  /* background-color: black; */
+  z-index: 1;
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+  margin-block: 20px;
+  position: relative;
+  font-size: 25px;
+}
+a:hover > i {
+  transition: 1s ease-in-out;
+}
+a {
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  border-radius: 30px;
+  padding: 10px;
+  transition: 1s ease-in-out;
+}
+i span {
+  visibility: hidden;
+  position: absolute;
+}
+
+.name {
+  position: absolute;
+  left: 10%;
+  top: 35%;
+  z-index: 1;
+  margin-left: 20px;
+  color: white;
+}
+.name h1 {
+  font-size: 65px;
+  color: aquamarine;
+}
+
+.line,
+.txt {
+  font-size: 30px;
+}
+
+#about {
+  padding: 30px 0;
+}
+
+#about h2 {
+  font-size: 45px;
+  text-align: center;
+}
+.circle {
+  position: absolute;
+  left: 113%;
+  top: -10%;
+  /* translate: (-10px); */
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  transition: 1s ease-in-out;
+
+}
+.circle div{
+  
+  border: 20px solid white;
+  border-radius: 50%;
+  padding: 114px;
+  transition: 1s ease-in-out;
+}
+.circle div:hover{  
+  padding: 150px;
+}

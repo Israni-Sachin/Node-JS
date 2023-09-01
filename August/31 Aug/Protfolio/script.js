@@ -36,26 +36,29 @@ let ripple = document.getElementById('ripple')
 ripple.addEventListener('mousemove', function (e) {
   let x = e.clientX
   let y = e.clientY
+  let span2 = document.getElementsByTagName('span')[0]
   let span = document.createElement('span')
   span.style.left = x + 'px'
   span.style.top = y + 'px'
-  let div = document.createElement('div')
+  span2.style.left = x + 'px'
+  span2.style.top = y + 'px'
+  let div = document.getElementsByTagName('div')[0]
   div.style.left = x + 'px'
   div.style.top = y + 'px'
   // console.log(x); //565 to 595 
   // console.log(y); // 285 to 305
   ripple.append(span)
-  ripple.append(div)
+  // ripple.append(div)
   // if (document.getElementsByTagName('div')) {x
   //   // document.getElementsByTagName('div').length - 1
   //   console.log('askjba');
   // }
   // else {
   // }
-  setTimeout(() => {
-    div.remove()
-  }, 10);
-  // console.log(document.getElementsByTagName('div').length < 2);
+  // setTimeout(() => {
+  //   div.remove()
+  // }, 10);
+  // // console.log(document.getElementsByTagName('div').length < 2);
   setTimeout(() => {
     span.remove()
   }, 100)
