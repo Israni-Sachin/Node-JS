@@ -115,3 +115,16 @@
 // list.map((ele, i) => console.log((i + 1) + '.' + ele +'\n'))
 // let a=1;
 // console.log(list[a-1]);
+
+let movie_list = require('./modules/movie_list');
+function run() {
+    let a = movie_list.list();
+    // setTimeout(()=>{
+    // print(a);
+    // },2000)
+}
+
+// function print(a) {
+//     console.log(a);
+// }
+run();
