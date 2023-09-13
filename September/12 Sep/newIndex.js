@@ -1,4 +1,5 @@
-let user = require('./modules/users.json')
+// let user = require('./modules/users.json')
+let user = require('./modules/usersMod.json')
 const http = require('http');
 let queryString = require('querystring')
 let url = require('url')
@@ -16,6 +17,21 @@ function handleRequest(req, res) {
         if ((reqData.path).endsWith('/user')) {
             console.log('ALL activated');
             res.end(JSON.stringify(user))
+        }
+        else if(qs.search){
+            console.log('Search Activated');
+            let searchedData = [];
+            if (Array.isArray(qs.search)) {
+                for (let i = 0; i < qs.search.length; i++) {
+                    let getID = user.find(v => v.name.includes(qs.search[i]));
+                    finalData.push(getID)
+                }
+                res.end(JSON.stringify(searchedData))
+            }
+            else {
+                let getID = user.filter(v => v.name.includes(qs.search));
+                res.end(JSON.stringify(getID));
+            }
         }
         else if (qs.id) {
             console.log('ID activated');
@@ -58,7 +74,7 @@ function handleRequest(req, res) {
         req.on('end', () => {
             let obj = JSON.parse(body);
             user.push(obj);
-            fs.writeFile('./users.json', JSON.stringify(user), (err) => console.log(err))
+            fs.writeFile('./modules/usersMod.json', JSON.stringify(user), (err) => console.log(err))
         })
     }
     else if (req.method == 'PUT') {
@@ -68,8 +84,8 @@ function handleRequest(req, res) {
         req.on('data', (chunk) => body += chunk);
         req.on('end', () => {
             let obj = JSON.parse(body);
-            user[getID] = { id: qs.id, ...obj };
-            fs.writeFile('./users.json', JSON.stringify(user), (err) => console.log(err))
+            user[getID||user.length] = { id: qs.id || {}, ...obj };
+            fs.writeFile('./modules/usersMod.json', JSON.stringify(user), (err) => console.log(err))
             res.end('Updated Successfully');
         });
     }
@@ -81,14 +97,14 @@ function handleRequest(req, res) {
         req.on('end', () => {
             let obj = JSON.parse(body);
             user[getID] = { ...user[getID], ...obj };
-            fs.writeFile('./users.json', JSON.stringify(user), (err) => console.log(err))
+            fs.writeFile('./modules/usersMod.json', JSON.stringify(user), (err) => console.log(err))
             res.end('Updated Successfully');
         });
     }
     else if (req.method == 'DELETE') {
         console.log('DELETE activated');
         user = user.filter(v => v.id != qs.id);
-        fs.writeFile('./users.json', JSON.stringify(user), (err) => console.log(err))
+        fs.writeFile('./modules/usersMod.json', JSON.stringify(user), (err) => console.log(err))
         res.end('Deleted Successfully');
     }
     else {
