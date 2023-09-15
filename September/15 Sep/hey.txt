@@ -1,0 +1,21 @@
+Hello world!Hello world!
+
+
+ ---------------------- Structure of Node JS ------------------------------
+
+ my-node-app/
+   ├── node_modules/        # Third-party libraries and dependencies installed via npm
+   ├── src/                 # Source code for your application
+   │    ├── index.js        # Entry point for your application
+   │    ├── routes/         # Route definitions and controllers
+   │    ├── models/         # Data models and database schema
+   │    ├── views/          # Views or templates (if using a template engine)
+   │    └── utils/          # Utility functions and helpers
+   ├── public/              # Publicly accessible files (e.g., client-side assets)
+   ├── config/              # Configuration files (e.g., environment variables)
+   ├── tests/               # Unit and integration tests
+   ├── package.json         # Project metadata and dependencies configuration
+   ├── package-lock.json    # Lock file for precise dependency versions
+   ├── .env                 # Environment variables configuration (not in version control)
+   ├── .gitignore           # Specifies files and folders to be ignored by Git
+   └── README.md            # Project documentation and instructions
