@@ -4,17 +4,16 @@ const port = 3500;
 app.use(express.json());
 
 const routes = require('./Routes');
-const reqLogger = require('./middlewares/req.middleware');
-const logging = require('./middlewares/logging.middleware');
+const loginAuth = require('./Controllers/logging.controllers')
+// app.use(reqLogger);
 
-app.use(reqLogger);
+// app.use(logging);
 
-app.use(logging);
-
+app.post('/login', loginAuth)
 app.use('/hospital', routes);
 
 app.use('/', (req, res) => {
-    res.send('Welcome to express');
+    res.send({Status:404, Message:"Not Found"});
 });
 
 app.listen(port, console.log(`Server is running on ${port} port`));
