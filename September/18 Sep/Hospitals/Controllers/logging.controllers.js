@@ -36,15 +36,16 @@ function login(req, res) {
     // let data = JSON.parse(req.headers.auth)
     // let data = req.body
     let user = logging.login(req.body)
-    if(!user){
+    if (!user) {
         res.send({ status: 401, message: 'Invalid username or password' })
     }
-    else{
+    else {
         let token = logging.generateToken(user)
+        let username = req.body.username
         res.send({
             Status: 200,
             Message: " Login Success",
-            data: { token }
+            data: { ...user, username, token }
         })
     }
     // console.log(user);
