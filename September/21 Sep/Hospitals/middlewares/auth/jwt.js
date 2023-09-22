@@ -1,18 +1,18 @@
 let jwt = require('jsonwebtoken');
-const secret = "Sachinisrani@5656"
+require('dotenv');
 
 function generateToken(data) {
     let username = data.username
     delete data.username;
-    let mainToken = jwt.sign(data, secret, { expiresIn: '1d' })
+    let mainToken = jwt.sign(data, process.env.secret, { expiresIn: '1d' })
     return data.id, data.role, username, mainToken;
 }
 
 function verifyToken(req, res, next) {
     try {
-        if (!req.headers.auth) throw new Error("auth header not found")
+        if (!req.headers.auth) res.status(400).json("auth header not found")
         let token = req.headers.auth
-        let data = jwt.verify(token, secret);
+        let data = jwt.verify(token, process.env.secret);
 
         req.user = data
         next();
