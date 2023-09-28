@@ -14,7 +14,7 @@ function login(req, res) {
     let username = req.body.username
     res.send({
         Status: 200,
-        Message: " Login Success",
+        Message: "Login Successfully",
         data: { ...user, username, token }
     })
 
