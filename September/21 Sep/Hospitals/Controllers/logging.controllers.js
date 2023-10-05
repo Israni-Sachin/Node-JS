@@ -3,7 +3,8 @@ let auth = require('../middlewares/auth/jwt')
 
 function login(req, res) {
 
-    if (!req.body) {
+    console.log(Object.entries(req.body).length, 'hi');
+    if (Object.entries(req.body).length == 0) {
         return res.send({ status: 401, message: 'Body is empty' })
     }
     let user = logging.login(req.body)
