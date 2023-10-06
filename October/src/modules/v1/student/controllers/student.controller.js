@@ -13,7 +13,7 @@ const studentAdd = async (req, res) => {
 const studentAll = async (req, res) => {
     try {
         let result = await _studentService.studentAll();
-        res.status(200).json({ message: "Student fetched successfully", data: result });
+        res.status(200).json({ data: result });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Error while adding student' });
@@ -26,14 +26,14 @@ const studentGet = async (req, res) => {
         res.status(200).json({ message: "Student fetched successfully", data: result });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while adding student' });
+        res.status(500).json({ message: 'Error while getting student' });
     }
 }
 const studentDelete = async (req, res) => {
     try {
         let data = req.params.userId;
         let result = await _studentService.studentDelete(data);
-        res.status(200).json({ message: "Student deleted successfully", data: result.affectedRows });
+        res.status(200).json({ message: "Student deleted successfully", data_affected: result.affectedRows });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error while deleting student" });

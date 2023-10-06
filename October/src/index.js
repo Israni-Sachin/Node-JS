@@ -7,5 +7,5 @@ app.use(express.json());
 app.use('/',apiRoutes());
 
 app.listen(port,()=>{
-    console.log(port);
+    console.log(`Server is running on ${port} port`);
 });
