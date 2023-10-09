@@ -7,7 +7,6 @@ router.route('/')
     .post(patient_controller.addPatient)
 router.route('/:userId')
     .get(patient_controller.getPatientById)
-    .put(patient_controller.updateAll_patDet)
     .patch(patient_controller.updatePatient)
     .delete(patient_controller.deletePatient)
 

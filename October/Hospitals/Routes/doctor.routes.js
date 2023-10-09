@@ -10,7 +10,6 @@ router
 router
     .route('/:userId')
     .get(doctor_controller.getDoctorById)
-    .put(doctor_controller.updateAll_docDet)
     .patch(doctor_controller.updateDoctor)
     .delete(doctor_controller.deleteDoctor)
 

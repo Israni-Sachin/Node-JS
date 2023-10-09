@@ -1,26 +1,26 @@
-let patients_services = require('../Services/patient.services')
+let patientServices = require('../Services/patient.services')
+let { sucessResponse, errorResponse } = require('../helpers/http_response')
 
 async function getPatient(req, res) {
     try {
-        let data = await patients_services.getPatient_logic();
-        res.send(data);
+        let data = await patientServices.getPatient();
+        sucessResponse(res, 'All Patients Fetched Successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ status: 500, message: 'Error while getting student' });
+        errorResponse(res, 'Error while getting patient', error.status)
     }
 }
 
 async function getPatientById(req, res) {
-    // let includes = patients.some(v => v.id === userId)
     try {
         let userId = Number(req.params.userId)
-        let data = await patients_services.getPatientById_logic(userId);
-        res.send(data);
+        let data = await patientServices.getPatientById(userId);
+        sucessResponse(res, 'Patient Fetched Successfully', data)
     }
 
     catch (error) {
         console.log(error);
-        res.status(500).json({ status: 500, message: 'Error while getting student' });
+        errorResponse(res, 'Error while getting patient', error.status)
     }
 }
 
@@ -28,50 +28,36 @@ async function addPatient(req, res) {
 
     try {
         let body = req.body;
-        let data = await patients_services.addPatient_logic(body);
-        res.status(200).json({ message: "Patient added successfully" });
+        let data = await patientServices.addPatient(body);
+        sucessResponse(res, 'Patient added successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ status: 500, message: 'Error while adding student' });
+        errorResponse(res, 'Error while adding patient', error.status)
     }
 
 
 }
-
-function updateAll_patDet(req, res) {
-    let userId = Number(req.params.userId)
-    let includes = patients.some(v => v.id === userId)
-
-    if (includes) {
-        body = req.body;
-        let data = patients_services.updateAllPatientDetails_logic(userId, body);
-        res.send(data);
-    }
-
-    else res.send({ status: 404, message: 'Not Updated' });
-}
-
 function updatePatient(req, res) {
-    body = req.body;
-    let userId = Number(req.params.userId)
-
-    if (includes) {
-        let includes = patients.some(v => v.id === userId)
-        let data = patients_services.updatePatient_logic(userId, body);
-        res.send(data);
+    try {
+        body = req.body;
+        let userId = Number(req.params.userId)
+        let data = patientServices.updatePatient(userId, body);
+        sucessResponse(res, 'Patient updated successfully', data)
+    } catch (error) {
+        console.log(error);
+        errorResponse(res, 'Error while updating patient', error.status)
     }
 
-    else res.send({ status: 404, message: 'Not Updated' });
 }
 async function deletePatient(req, res) {
     try {
         let userId = req.params.userId;
-        let result = await patients_services.deletePatient_logic(userId);
-        res.status(200).json({ message: "Patient deleted successfully", data_affected: result.affectedRows });
+        let result = await patientServices.deletePatient(userId);
+        sucessResponse(res, 'Patient deleted successfully', result)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ status: 500, message: 'Error While Deleting' });
+        errorResponse(res, 'Error while deleting student', error.status)
     }
 }
 
-module.exports = { getPatient, getPatientById, addPatient, updateAll_patDet, updatePatient, deletePatient }
+module.exports = { getPatient, getPatientById, addPatient, updatePatient, deletePatient }
