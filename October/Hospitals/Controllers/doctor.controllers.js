@@ -20,7 +20,7 @@ async function getDoctorById(req, res) {
         console.log(error);
         errorResponse(res, 'Error while getting doctor', error.status)
     }
-    
+
 }
 
 async function addDoctor(req, res) {
@@ -32,18 +32,19 @@ async function addDoctor(req, res) {
         console.log(error);
         errorResponse(res, 'Error while getting student', error.status);
     }
-    
+
 }
 
 async function updateDoctor(req, res) {
-    let userId = Number(req.params.userId)
-    let includes = doctors.some(v => v.id === userId)
-    if (includes) {
+    try {
         body = req.body;
-        let data = doctor_services.updateDoctor(userId, body)
-        successResponse(res, "Doctor updated successfully", data);
+        let userId = Number(req.params.userId)
+        let data = await doctor_services.updateDoctor(userId, body);
+        successResponse(res, 'Doctor updated successfully', data)
+    } catch (error) {
+        console.log(error);
+        errorResponse(res, 'Error while updating doctor', error.status)
     }
-    else res.send({ status: 404, message: 'Not Updated' });
 }
 
 async function deleteDoctor(req, res) {
@@ -57,4 +58,4 @@ async function deleteDoctor(req, res) {
     }
 }
 
-module.exports = { getDoctor, getDoctorById, addDoctor, updateAll_docDet, updateDoctor, deleteDoctor }
+module.exports = { getDoctor, getDoctorById, addDoctor, updateDoctor, deleteDoctor }
