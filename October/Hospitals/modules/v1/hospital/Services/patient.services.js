@@ -1,6 +1,6 @@
 // let patients = require('../Data/patient.json')
 // let fs = require('fs');
-const db = require('../db/db.con')
+const db = require('../../../../db/db.con')
 
 
 async function getPatient() {

@@ -14,14 +14,4 @@ router
     .patch(doctor_controller.updateDoctor)
     .delete(doctor_controller.deleteDoctor)
 
-router
-    .route('/prescription')
-    .get(prescription_controller.getPrescription)
-    .post(prescription_controller.addPrescription)
-    
-router
-    .route('/prescription/:presId')
-    .get(prescription_controller.getPrescriptionById)
-    .delete(prescription_controller.deletePrescription)
-
 module.exports = router

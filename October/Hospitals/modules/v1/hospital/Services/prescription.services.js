@@ -1,4 +1,4 @@
-const db = require('../db/db.con')
+const db = require('../../../../db/db.con');
 const moment = require('moment');
 
 

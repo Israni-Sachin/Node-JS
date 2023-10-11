@@ -1,5 +1,5 @@
 let doctor_services = require('../Services/doctor.services')
-let { successResponse, errorResponse } = require('../helpers/http_response');
+let { successResponse, errorResponse } = require('../../../../helpers/http_response');
 
 async function getDoctor(req, res) {
     try {

@@ -1,6 +1,6 @@
 // let doctors = require('../Data/doctor.json')
 let fs = require('fs');
-const db = require('../db/db.con')
+const db = require('../../../../db/db.con')
 
 async function getDoctor() {
     let query = `SELECT * from doctor`

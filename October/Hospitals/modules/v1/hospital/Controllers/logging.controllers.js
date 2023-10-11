@@ -1,5 +1,5 @@
 let logging = require('../Services/logging.services');
-let auth = require('../middlewares/auth/jwt')
+let auth = require('../../../../middlewares/auth/jwt')
 
 async function login(req, res) {
 
@@ -19,8 +19,5 @@ async function login(req, res) {
     })
 
 }
-
-
-
 
 module.exports = login 

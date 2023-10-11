@@ -1,5 +1,5 @@
 let prescriptionServices = require('../Services/prescription.services')
-let { successResponse, errorResponse } = require('../helpers/http_response')
+let { successResponse, errorResponse } = require('../../../../helpers/http_response');
 
 
 const getPrescription = async (req,res) => {

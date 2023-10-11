@@ -1,4 +1,4 @@
-let db = require('../db/db.con');
+let db = require('../../../../db/db.con');
 
 
 async function login(body) {

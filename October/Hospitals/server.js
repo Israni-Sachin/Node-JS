@@ -3,8 +3,8 @@ const app = express();
 const port = 3500;
 app.use(express.json());
 
-const routes = require('./Routes');
-const loginAuth = require('./Controllers/logging.controllers')
+const routes = require('./modules/v1/hospital/Routes');
+const loginAuth = require('./modules/v1/hospital/Controllers/logging.controllers')
 const verifyToken = require('./middlewares/auth/jwt')
 
 app.use(express.static('c:/Users/sachi/OneDrive/Desktop/Front-End Repository-2/Node-JS/October/src/public'));
