@@ -13,8 +13,9 @@ const login = async (req, res) => {
             return res.send({ status: 401, message: 'Invalid username or password' })
         }
         let token = auth.generateToken(user[0])
-        let username = req.body.user_firstname
-        successResponse(res, "Login Successfully completed", { ...user[0], username, token });
+        let id = user[0].user_id
+        let role = user[0].user_role
+        successResponse(res, "Login Successfully completed", { id, role, token });
     } catch (error) {
         console.log(error);
         errorResponse(res, { sysmsg: error.message, msg: "Error while logging" }, error.status);
