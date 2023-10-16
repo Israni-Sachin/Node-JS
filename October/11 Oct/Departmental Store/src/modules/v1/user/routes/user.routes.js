@@ -7,9 +7,9 @@ const userRouter = (app) => {
     app.post("/user", tokenForManager, userControllers.userAdd)
     app
         .route("/user/:id")
-        .get(userControllers.userGetById)
-        .patch(userControllers.userUpdate)
-        .delete(userControllers.userDelete)
+        .get(tokenForManagerStaff, userControllers.userGetById)
+        .patch(tokenForManager, userControllers.userUpdate)
+        .delete(tokenForManager, userControllers.userDelete)
 
 }
 

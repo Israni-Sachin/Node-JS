@@ -1,53 +1,54 @@
 const userServices = require('../services/user.services')
+const { successResponse, errorResponse } = require('../../../../helper/http_response')
 
 const userGetById = async (req, res) => {
     try {
         let data = req.params.id
         let result = await userServices.userGetById(data);
-        res.status(200).json({ message: "User fetched successfully", data: result });
+        successResponse(res, 'User fetched successfully', data);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while getting user' });
+        errorResponse(res, 'Error while fetching user', error.status);
     }
 }
 const userAll = async (req, res) => {
     try {
         let result = await userServices.userAll();
-        res.status(200).json({ data: result });
+        successResponse(res, 'Users fetched successfully', data);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while fetching user' });
+        errorResponse(res, 'Error while fetching user', error.status);
     }
 }
 const userAdd = async (req, res) => {
     try {
         let body = req.body;
         let data = await userServices.userAdd(body);
-        successResponse(res, 'User added successfully', data)
+        successResponse(res, 'User added successfully', data);
     } catch (error) {
         console.log(error);
-        errorResponse(res, 'Error while adding user', error.status)
+        errorResponse(res, 'Error while adding user', error.status);
     }
 }
 const userUpdate = async (req, res) => {
     try {
-        let userId = req.params.userId
+        let userId = req.params.id
         let data = req.body;
         let result = await userServices.userUpdate(userId, data);
-        res.status(200).json({ message: "User updated successfully", data: result });
+        successResponse(res, 'User updated successfully', data);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while updating user' });
+        errorResponse(res, 'Error while updating user', error.status);
     }
 }
 const userDelete = async (req, res) => {
     try {
-        let data = req.params.userId;
+        let data = req.params.id;
         let result = await userServices.userDelete(data);
-        res.status(200).json({ message: "User deleted successfully", data_affected: result.affectedRows });
+        successResponse(res, 'User deleted successfully', data);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Error while deleting user" });
+        errorResponse(res, 'Error while deleting user', error.status);
     }
 }
 

@@ -1,23 +1,26 @@
 const productServices = require('../services/product.services')
+let { successResponse, errorResponse } = require('../../../../helper/http_response')
 
-const productGetByName = async (req, res) => {
+const productGetById = async (req, res) => {
     try {
-        let data = req.params.name
-        let result = await productServices.productGetByName(data);
-        res.status(200).json({ message: "product fetched successfully", data: result });
+        let id = req.params.id
+        let token = req.user
+        let result = await productServices.productGetById(id, token);
+        successResponse(res, 'Product fetched successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while getting product' });
+        errorResponse(res, 'Error while fetching product', error.status)
     }
 }
 const productsGet = async (req, res) => {
     try {
         let data = req.params.page
-        let result = await productServices.productsGet(data);
-        res.status(200).json({ data: result });
+        let token = req.user
+        let result = await productServices.productsGet(data, token);
+        successResponse(res, 'Product fetched successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while fetching product' });
+        errorResponse(res, 'Error while fetching product', error.status)
     }
 }
 const productAdd = async (req, res) => {
@@ -32,24 +35,25 @@ const productAdd = async (req, res) => {
 }
 const productUpdate = async (req, res) => {
     try {
-        let name = req.params.name
+        let id = req.params.id
         let data = req.body;
-        let result = await productServices.productUpdate(name, data);
-        res.status(200).json({ message: "product updated successfully", data: result });
+        let token = req.user
+        let result = await productServices.productUpdate(id, data, token);
+        successResponse(res, 'Product updated successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error while updating product' });
+        errorResponse(res, 'Error while updating product', error.status)
     }
 }
 const productDelete = async (req, res) => {
     try {
-        let name = req.params.name;
-        let result = await productServices.productDelete(name);
-        res.status(200).json({ message: "product deleted successfully", data_affected: result.affectedRows });
+        let id = req.params.id;
+        let result = await productServices.productDelete(id);
+        successResponse(res, 'Product deleted successfully', data)
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Error while deleting product" });
+        errorResponse(res, 'Error while deleting product', error.status)
     }
 }
 
-module.exports = { productsGet, productGetByName, productUpdate, productDelete, productAdd }
+module.exports = { productsGet, productGetById, productUpdate, productDelete, productAdd }

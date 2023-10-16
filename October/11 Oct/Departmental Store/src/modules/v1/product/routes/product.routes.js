@@ -7,8 +7,8 @@ const productRoute = (app) => {
         .post(tokenForManager, productControllers.productAdd)
 
     app
-        .route("/product/:name")
-        .get(productControllers.productGetByName)
+        .route("/product/:id")
+        .get(productControllers.productGetById)
         .patch(tokenForManager, productControllers.productUpdate)
         .delete(tokenForManager, productControllers.productDelete)
 

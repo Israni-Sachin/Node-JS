@@ -10,25 +10,36 @@ const userAll = async () => {
     const result = await db.query(query)
     return result[0];
 }
-const userAdd = async (data) => {
-    const fields = ['user_firstname', 'user_lastname', 'user_phone', 'user_email', 'user_gender', 'user_password'];
+const userAdd = async (body) => {
+    const fields = ['user_firstname', 'user_lastname', 'user_phone', 'user_email', 'user_gender', 'user_password', 'user_role'];
     const placeholders = '?,'.repeat(fields.length).replace(/,$/, '');
-    const query = `INSERT INTO products
-                (${fields.join()}) VALUES
-                (${placeholders})`
-    const result = await db.query(query, [body.user_firstname, body.user_lastname, body.user_phone, body.user_email, body.user_gender, user_password])
+    const query = `INSERT INTO user
+    (${fields.join()}) VALUES
+    (${placeholders})`
+    const result = await db.query(query, [body.user_firstname, body.user_lastname, body.user_phone, body.user_email, body.user_gender, body.user_password, body.user_role]);
+
+    if (body.user_role == 'staff') {
+        const qry = `Select * from user where user_phone=${body.user_phone}`
+        const res = await db.query(qry);
+        // console.log(res[0]);
+        // console.log(res[0][0].user_id);
+        const fields = ['st_user_id', 'st_joining_date', 'st_dept_id'];
+        const placeholders = '?,'.repeat(fields.length).replace(/,$/, '');
+        const query = `INSERT INTO staff
+                    (${fields.join()}) VALUES
+                    (${placeholders})`
+        const result = await db.query(query, [res[0][0].user_id, body.st_joining_date, body.st_dept_id]);
+    }
 }
 const userUpdate = async (userId, data) => {
-    const user = await userGetById(userId);
+    // const user = await userGetById(userId);
     const keys = Object.keys(data);
-    const fields = data.map(ele => ele + " = ?").join();
-
+    const fields = keys.map(ele => ele + " = ?").join();
     const query = `UPDATE user 
                     SET ${fields} 
                     WHERE user_id = ${userId} `
 
-    const result = await db.query(query, [data.user_first_name || user[0].user_first_name, data.user_last_name || user[0].user_last_name, data.user_phone || user[0].user_phone, data.user_email || user[0].user_email, data.user_gender || user[0].user_gender, data.user_password || user[0].user_password])
-
+    const result = await db.query(query, Object.values(data))
     return result[0];
 }
 
