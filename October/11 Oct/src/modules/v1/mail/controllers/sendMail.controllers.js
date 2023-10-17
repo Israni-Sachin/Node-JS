@@ -17,9 +17,9 @@ const sendingMail = async (req,res) => {
 
     const info = await transporter.sendMail({
         from: 'sachinisrani56@gmail.com', // sender address
-        to: " bhaumik.panchal@saeculumsolutions.com", // list of receivers
-        subject: "Hello bhaumik", // Subject line
-        html: "<b>From secret Avenger</b>", // html body
+        to: " pujan.jani@saeculumsolutions.com", // list of receivers
+        subject: "Your OTP IS", // Subject line
+        html: "<b>875421</b>", // html body
     });
     console.log("Message sent: %s", info.messageId);
     res.json(info)

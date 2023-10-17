@@ -9,6 +9,8 @@ const register = require('./modules/v1/auth/controllers/register.controllers');
 require('dotenv').config();
 app.use(express.json());
 
+app.use('/image',express.static('./public'));
+
 app.use('/register', register)
 app.use('/login', login);
 app.use('/', verifyToken, apiRoutes());

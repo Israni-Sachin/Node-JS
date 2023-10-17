@@ -1,4 +1,4 @@
-const successResponse = (res, message, data) => {
+const successResponse = (res, message, data = undefined) => {
     res.status(200).json({
         status: 200,
         message,

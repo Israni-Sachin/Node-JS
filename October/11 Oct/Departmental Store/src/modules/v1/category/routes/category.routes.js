@@ -12,7 +12,9 @@ const categoryRoute = (app) => {
         .patch(tokenForManager, categoryControllers.categoryUpdate)
         .delete(tokenForManager, categoryControllers.categoryDelete)
 
-    app.get('/categorys/:page', categoryControllers.categorysGet)
+    app
+        .route('/categorys/:page')
+        .get(categoryControllers.categorysGet)
 }
 
 

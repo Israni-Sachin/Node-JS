@@ -7,7 +7,7 @@ const routes = require('./modules/v1/hospital/Routes');
 const loginAuth = require('./modules/v1/hospital/Controllers/logging.controllers')
 const verifyToken = require('./middlewares/auth/jwt')
 
-app.use(express.static('c:/Users/sachi/OneDrive/Desktop/Front-End Repository-2/Node-JS/October/src/public'));
+app.use('/image',express.static('./public'));
 
 app.post('/login', loginAuth)
 app.use('/hospital', verifyToken.verifyToken, routes);

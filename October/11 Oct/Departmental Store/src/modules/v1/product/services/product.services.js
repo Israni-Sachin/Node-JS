@@ -54,16 +54,29 @@ const productImageAdd = async (body) => {
 }
 
 const productUpdate = async (id, data, token) => {
-    const user = await productGetById(id, token);
-    const keys = Object.keys(data);
+    // const user = await productGetById(id, token);
+    const product = Object.entries(data);
+    const prd = product.filter(ele => ele[0].includes("prd_"));
+    const prdimg = product.filter(ele => !ele[0].includes("prd_"));
+    if (prd.length != 0) {
+        const fields = prd.map(ele => ele[0] + " = ?").join();
+        const values = prd.map(ele => ele[1]);
+        const query = `UPDATE products 
+                       SET ${fields} 
+                       WHERE prd_id = ${id} `
+        const result = await db.query(query, values);
+    }
+    if (prdimg.length != 0) {
+        const fields = prdimg.map(ele => ele[0] + " = ?").join();
+        const values = prdimg.map(ele => ele[1]);
+        const query = `UPDATE products_img 
+                       SET ${fields} 
+                       WHERE prdimg_prd_id = ${id} `
+        const result = await db.query(query, values);
+    }
+
     // const fields = ['prd_name', 'prd_price', 'prd_qty', 'prd_min_qty', 'prd_is_visible', 'prd_dept_id'];
-    const fields = keys.map(ele => ele + " = ?").join();
-    const query = `UPDATE products 
-                   SET ${fields} 
-                   WHERE prd_id = ${id} `
     // const result = await db.query(query, [data.prd_name || user[0].prd_name, data.prd_price || user[0].prd_price, data.prd_qty || user[0].prd_qty, data.prd_min_qty || user[0].prd_min_qty, data.prd_is_visible || user[0].prd_is_visible, data.prd_dept_id || user[0].prd_dept_id])
-    const result = await db.query(query, Object.values(data));
-    return result[0];
 }
 
 const productDelete = async (id) => {

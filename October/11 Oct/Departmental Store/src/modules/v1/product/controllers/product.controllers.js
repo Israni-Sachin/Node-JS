@@ -6,7 +6,7 @@ const productGetById = async (req, res) => {
         let id = req.params.id
         let token = req.user
         let result = await productServices.productGetById(id, token);
-        successResponse(res, 'Product fetched successfully', data)
+        successResponse(res, 'Product fetched successfully', result)
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while fetching product', error.status)
@@ -39,7 +39,7 @@ const productUpdate = async (req, res) => {
         let data = req.body;
         let token = req.user
         let result = await productServices.productUpdate(id, data, token);
-        successResponse(res, 'Product updated successfully', data)
+        successResponse(res, 'Product updated successfully');
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while updating product', error.status)

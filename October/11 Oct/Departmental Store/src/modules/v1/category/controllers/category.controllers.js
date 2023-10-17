@@ -13,6 +13,7 @@ const categoryGetById = async (req, res) => {
         errorResponse(res, 'Error while getting category', error.status);
     }
 }
+
 const categorysGet = async (req, res) => {
     try {
         let data = req.params.page

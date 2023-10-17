@@ -1,4 +1,4 @@
-function tokenForManager(req, res, next) {
+function tokenForEvery(req, res, next) {
     let token = req.user
     if (token.user_role == 'manager' || token.user_role == 'customer' || token.user_role == 'staff') {
         next();
@@ -11,4 +11,4 @@ function tokenForManager(req, res, next) {
     }
 }
 
-module.exports = tokenForManager;
+module.exports = tokenForEvery;
