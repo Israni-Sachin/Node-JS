@@ -23,10 +23,9 @@ const orderGetById = async (req, res) => {
 }
 const ordersGet = async (req, res) => {
     try {
-        let data = req.params.page
-        let token = req.user
-        let result = await orderServices.ordersGet(data, token);
-        successResponse(res, 'order fetched successfully', data)
+        let page = req.params.page || 1;
+        let result = await orderServices.ordersGet(page);
+        successResponse(res, 'order fetched successfully', result)
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while fetching order', error.status)

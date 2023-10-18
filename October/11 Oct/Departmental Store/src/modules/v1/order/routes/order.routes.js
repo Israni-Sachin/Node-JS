@@ -1,7 +1,7 @@
 const orderControllers = require('../controllers/order.controllers');
 // const tokenForManager = require('../../../../middlewares/manager.middleware')
-const tokenForManagerStaff = require('../../../../middlewares/managerStaff.middleware')
-const tokenForCustomer = require('../../../../middlewares/customer.middleware')
+const tokenForCustomer = require('../../../../middlewares/customer.middleware');
+const tokenForManager = require('../../../../middlewares/managerStaff.middleware');
 
 const orderRoute = (app) => {
     app
@@ -10,9 +10,10 @@ const orderRoute = (app) => {
         
     app
         .route("/order/:id")
-        .get(tokenForManagerStaff, orderControllers.orderGetById)
+        .get(tokenForManager, orderControllers.orderGetById)
 
-    app.get('/orders', tokenForManagerStaff, orderControllers.ordersGet)
+    app.redirect('/orders/1')
+    app.get('/orders/:page', tokenForManager, orderControllers.ordersGet)
 }
 
 

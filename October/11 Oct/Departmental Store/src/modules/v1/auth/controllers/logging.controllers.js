@@ -13,7 +13,7 @@ const login = async (req, res) => {
             return res.send({ status: 401, message: 'Invalid username or password' })
         }
         let token = auth.generateToken(user[0])
-        let id = user[0].user_id
+        let id = user[0].user_id;
         let role = user[0].user_role
         successResponse(res, "Login Successfully completed", { id, role, token });
     } catch (error) {

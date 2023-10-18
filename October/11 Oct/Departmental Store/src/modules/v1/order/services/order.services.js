@@ -6,7 +6,6 @@ const orderGet = async (token) => {
     const query = `SELECT * FROM orders WHERE o_user_id =${token.user_id}`;
     const result = await db.query(query);
     console.log(result);
-    
 }
 
 // const userGet = async (id) => {
@@ -36,14 +35,8 @@ const orderGetById = async (id) => {
     return result[0];
 }
 
-const ordersGet = async (page, token) => {
-    let query = '';
-    if (token.user_role == 'manager') {
-        query = `SELECT * FROM orders LIMIT 10 OFFSET ${(Number(page) - 1) * 10};`
-    }
-    else {
-        query = `SELECT * FROM orders LIMIT 10 OFFSET ${(Number(page) - 1) * 10} WHERE prd_is_visible = 1;`
-    }
+const ordersGet = async (page) => {
+    const query = `SELECT * FROM orders LIMIT 10 OFFSET ${(Number(page) - 1) * 10};`
     const result = await db.query(query)
     return result[0];
 }
