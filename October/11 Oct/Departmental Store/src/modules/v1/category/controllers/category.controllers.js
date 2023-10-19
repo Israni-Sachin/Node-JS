@@ -5,8 +5,9 @@ const { successResponse, errorResponse } = require('../../../../helper/http_resp
 
 const categoryGetById = async (req, res) => {
     try {
-        let data = req.params.id
-        let result = await categoryServices.categoryGetById(data);
+        let id = req.params.id
+        let token = req.user
+        let result = await categoryServices.categoryGetById(id, token);
         successResponse(res, 'category fetched successfully', result);
     } catch (error) {
         console.log(error);

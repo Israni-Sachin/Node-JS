@@ -17,7 +17,7 @@ const productsGet = async (req, res) => {
         let data = req.params.page
         let token = req.user
         let result = await productServices.productsGet(data, token);
-        successResponse(res, 'Product fetched successfully', data)
+        successResponse(res, 'Product fetched successfully', result)
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while fetching product', error.status)
@@ -39,7 +39,7 @@ const productUpdate = async (req, res) => {
         let data = req.body;
         let token = req.user
         let result = await productServices.productUpdate(id, data, token);
-        successResponse(res, 'Product updated successfully');
+        successResponse(res, 'Product updated successfully',result);
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while updating product', error.status)
@@ -49,7 +49,7 @@ const productDelete = async (req, res) => {
     try {
         let id = req.params.id;
         let result = await productServices.productDelete(id);
-        successResponse(res, 'Product deleted successfully', data)
+        successResponse(res, 'Product deleted successfully')
     } catch (error) {
         console.log(error);
         errorResponse(res, 'Error while deleting product', error.status)

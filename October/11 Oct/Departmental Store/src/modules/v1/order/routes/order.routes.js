@@ -12,7 +12,7 @@ const orderRoute = (app) => {
         .route("/order/:id")
         .get(tokenForManager, orderControllers.orderGetById)
 
-    app.redirect('/orders/1')
+    // app.redirect('/orders/1')
     app.get('/orders/:page', tokenForManager, orderControllers.ordersGet)
 }
 

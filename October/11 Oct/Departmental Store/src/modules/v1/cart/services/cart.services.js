@@ -4,7 +4,7 @@ const currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 
 const cartGet = async (token) => {
-    const query = `SELECT * FROM cart WHERE user_id = '${token.user.id}'`
+    const query = `SELECT * FROM cart WHERE cart_user_id = '${token.user.id}'`
     const result = await db.query(query);
     return result[0];
 }

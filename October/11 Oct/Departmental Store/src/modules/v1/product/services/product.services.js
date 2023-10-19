@@ -8,7 +8,7 @@ const productGetById = async (id, token) => {
         query = `Select * from products where prd_id=${id}`
     }
     else {
-        query = `Select * from products where prd_id=${id} AND prd_is_visible=1`
+        query = `Select prd_id,prd_name,prd_price,prd_qty,prd_dept_id from products where prd_id=${id} AND prd_is_visible=1`
     }
     const result = await db.query(query)
     delete result[0][0].prd_is_visible;
@@ -22,7 +22,7 @@ const productsGet = async (page, token) => {
         query = `SELECT * FROM products LIMIT 10 OFFSET ${(Number(page) - 1) * 10};`
     }
     else {
-        query = `SELECT * FROM products LIMIT 10 OFFSET ${(Number(page) - 1) * 10} WHERE prd_is_visible = 1;`
+        query = `SELECT prd_id,prd_name,prd_price,prd_qty,prd_dept_id FROM products LIMIT 10 OFFSET ${(Number(page) - 1) * 10} WHERE prd_is_visible = 1;`
     }
     const result = await db.query(query)
     return result[0];

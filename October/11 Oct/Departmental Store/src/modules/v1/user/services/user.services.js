@@ -5,6 +5,11 @@ const userGetById = async (data) => {
     const result = await db.query(query)
     return result[0];
 }
+const userProfile = async (data) => {
+    const query = `Select * from user where user_id=${data}`
+    const result = await db.query(query)
+    return result[0];
+}
 const userAll = async () => {
     const query = `Select * from user`
     const result = await db.query(query)
@@ -42,10 +47,21 @@ const userUpdate = async (userId, data) => {
     const result = await db.query(query, Object.values(data))
     return result[0];
 }
+const userProfileUpdate = async (userId, data) => {
+    // const user = await userGetById(userId);
+    const keys = Object.keys(data);
+    const fields = keys.map(ele => ele + " = ?").join();
+    const query = `UPDATE user 
+                    SET ${fields} 
+                    WHERE user_id = ${userId} `
+
+    const result = await db.query(query, Object.values(data));
+    return result[0];
+}
 
 const userDelete = async (data) => {
     const query = `Delete from user where user_id=${data}`
     const result = await db.query(query)
     return result[0];
 }
-module.exports = { userAll, userGetById, userUpdate, userDelete, userAdd }
+module.exports = { userAll, userGetById, userUpdate, userDelete, userAdd, userProfile, userProfileUpdate }
