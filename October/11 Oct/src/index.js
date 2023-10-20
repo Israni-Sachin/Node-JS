@@ -31,9 +31,9 @@ app.get('/', (req, res) => {
 
 app.get('/mail',sendingMail)
 
-// app.listen(PORT, () => {
-//     console.log(`Server listening on ${PORT} port`);
-// });
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT} port`);
+});
 
 // let obj = {
 //     prd_id: 1,
