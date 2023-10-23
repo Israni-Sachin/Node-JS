@@ -1,12 +1,13 @@
 const userControllers = require('../controllers/user.controllers');
+const { verifyToken } = require('../../../../middlewares/auth/jwt');
 
 const userRoute = (app) => {
+    
+    app.get('/categorys',verifyToken, userControllers.categorysGet);
+    app.get('/category',verifyToken, userControllers.categoryGetByName);
 
-    app.get('/category', userControllers.categoryGet);
-    app.get('/category/:id', userControllers.categoryGetById);
-
-    app.get('/author', userControllers.authorGet);
-    app.get('/author/:id', userControllers.authorGetById);
+    app.get('/authors',verifyToken, userControllers.authorsGet);
+    app.get('/author',verifyToken, userControllers.authorGetByName);
     
 }
 
