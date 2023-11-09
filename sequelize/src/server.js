@@ -14,10 +14,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 // app.use(cors({ origin: '*' }));
 
-// app.use('/', apiRoutes());
-app.post('/', (req,res) => {
-    res.json({ status:200,message:"Hello there!" });
-})
+app.use('/', apiRoutes());
 
 app.use('*', (req, res) => {
     res.status(404).send('Page Not found');

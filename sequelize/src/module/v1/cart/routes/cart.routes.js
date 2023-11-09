@@ -8,9 +8,11 @@ const cartRoutes = (app) => {
 
     app.get('/cart', verifyToken, roleValidator(['user']), controllers.cartGet);
 
-    app.post('/cart', verifyToken, roleValidator(['user']), validator(cartAddSchema), controllers.cartAdd);
+    // app.post('/cart', verifyToken, roleValidator(['user']), validator(cartAddSchema), controllers.cartAdd);
+    app.post('/cart', verifyToken, roleValidator(['user']), controllers.cartAdd);
 
-    app.delete('/cart', verifyToken, roleValidator(['user']), validator(cartDelSchema), controllers.cartDelete);
+    // app.delete('/cart', verifyToken, roleValidator(['user']), validator(cartDelSchema), controllers.cartDelete);
+    app.delete('/cart', verifyToken, roleValidator(['user']),  controllers.cartDelete);
 }
 
 module.exports = cartRoutes;

@@ -1,29 +1,19 @@
-const mongoose = require('mongoose');
+const sequelize = require('../db/db.con')
+const User = require('./user.model')
 
-const cartItemSchema = new mongoose.Schema({
-    cartitm_fk_prd_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true
-    },
-    cartitm_prd_qty: {
-        type: Number,
-        required: true
-    }
-}, { _id: false });
+const { Sequelize, DataTypes } = require("sequelize");
 
-const cartSchema = new mongoose.Schema({
+const cartSchema = sequelize.define("carts", {
     cart_fk_user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-        unique: true
-    },
-    cart_items: [cartItemSchema]
-}, { timestamps: true });
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'id'
+        }
+    }
+});
+
+module.exports = cartSchema;
 
 
-
-const Cart = mongoose.model('Cart', cartSchema);
-
-module.exports = Cart;
+"Hare Krishna Hare Krishna , Krishna Krishna Hare Hare , Hare Ram Hare Ram , Ram Ram Hare Hare"
