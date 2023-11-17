@@ -69,54 +69,65 @@
 // console.log(escapedString);
 
 
-var romanToInt = function (s) {
-    let obj = {
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000,
-    }
-    s = s.split("");
-    // console.log(s)
-    s = s.map((v) => {
-        // console.log("val")
-        // val = obj.val
-        obj=Object.entries(obj)
-        // console.log(obj);
-        obj.map(val=>{
-            console.log(val[0]);
-            console.log(v);
-            console.log(val[0]==v);
-            if(val[0]==v){
-                v=val[1];
-                // console.log("a");
-            }
-        })
-        return v;
-    });
-    console.log(s)
-    return s;
-};
+// var romanToInt = function (s) {
+//     let obj = {
+//         "I": 1,
+//         "V": 5,
+//         "X": 10,
+//         "L": 50,
+//         "C": 100,
+//         "D": 500,
+//         "M": 1000,
+//     }
+//     s = s.split("");
+//     // console.log(s)
+//     s = s.map((v) => {
+//         // console.log("val")
+//         // val = obj.val
+//         obj=Object.entries(obj)
+//         // console.log(obj);
+//         obj.map(val=>{
+//             console.log(val[0]);
+//             console.log(v);
+//             console.log(val[0]==v);
+//             if(val[0]==v){
+//                 v=val[1];
+//                 // console.log("a");
+//             }
+//         })
+//         return v;
+//     });
+//     console.log(s)
+//     return s;
+// };
 
-// a = romanToInt("III")
+// // a = romanToInt("III")
 
-// console.log(a);
-let obj = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
-}
+// // console.log(a);
+// let obj = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+// }
 
-console.log(obj["I"]);
-const numbers1 = [1,1,2];
-let filterArray = numbers1.filter((a,b,c)=>{
-    return c.indexOf(a)===b;
-});
-console.log(filterArray);
+// console.log(obj["I"]);
+// const numbers1 = [1,1,2];
+// let filterArray = numbers1.filter((a,b,c)=>{
+//     return c.indexOf(a)===b;
+// });
+// console.log(filterArray);
+
+// function sum(a,b) {
+//     return a+b;
+// }
+
+// function sum(a,b,c) {
+//     return a+b+c;
+// }
+
+// console.log(sum(1,2));
+// console.log(sum(1,2,3));
