@@ -2,7 +2,6 @@
 const getUsername = document.querySelector("#user");
 const formSubmit = document.querySelector("#form");
 const main_container = document.querySelector(".main_container");
-// reusable fun
 async function myCustomFetcher(url, options) {
     const response = await fetch(url, options);
     if (!response.ok) {
@@ -12,7 +11,6 @@ async function myCustomFetcher(url, options) {
     console.log(data);
     return data;
 }
-// let display the card UI
 const showResultUI = (singleUser) => {
     const { avatar_url, login, url } = singleUser;
     main_container.insertAdjacentHTML("beforeend", `<div class='card'> 
@@ -26,7 +24,6 @@ const showResultUI = (singleUser) => {
     </div>
     `);
 };
-// subscribe to thapa technical
 function fetchUserData(url) {
     myCustomFetcher(url, {}).then((userInfo) => {
         for (const singleUser of userInfo) {
@@ -35,9 +32,7 @@ function fetchUserData(url) {
         }
     });
 }
-// default fun call
 fetchUserData("https://api.github.com/users");
-// let perform search fun
 formSubmit.addEventListener("submit", async (e) => {
     e.preventDefault();
     const searchTerm = getUsername.value.toLowerCase();
@@ -47,7 +42,6 @@ formSubmit.addEventListener("submit", async (e) => {
         const matchingUsers = allUserData.filter((user) => {
             return user.login.toLowerCase().includes(searchTerm);
         });
-        // we need to clear the previous data
         main_container.innerHTML = "";
         if (matchingUsers.length === 0) {
             main_container?.insertAdjacentHTML("beforeend", `<p class="empty-msg">No matching users found.</p>`);

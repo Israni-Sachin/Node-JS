@@ -2,8 +2,7 @@ const getUsername = document.querySelector("#user") as HTMLInputElement;
 const formSubmit = document.querySelector("#form") as HTMLFormElement;
 const main_container = document.querySelector(".main_container") as HTMLElement;
 
-// subscribe to thapa technical
-// so lets define the contract of an object
+
 interface UserData {
   id: number;
   login: string;
@@ -12,7 +11,7 @@ interface UserData {
   url: string;
 }
 
-// reusable fun
+
 async function myCustomFetcher<T>(
   url: string,
   options?: RequestInit
@@ -29,7 +28,6 @@ async function myCustomFetcher<T>(
   return data;
 }
 
-// let display the card UI
 const showResultUI = (singleUser: UserData) => {
   const { avatar_url, login, url } = singleUser;
   main_container.insertAdjacentHTML(
@@ -47,7 +45,6 @@ const showResultUI = (singleUser: UserData) => {
   );
 };
 
-// subscribe to thapa technical
 
 function fetchUserData(url: string) {
   myCustomFetcher<UserData[]>(url, {}).then((userInfo) => {
@@ -57,10 +54,10 @@ function fetchUserData(url: string) {
     }
   });
 }
-// default fun call
+
 fetchUserData("https://api.github.com/users");
 
-// let perform search fun
+
 formSubmit.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -75,7 +72,6 @@ formSubmit.addEventListener("submit", async (e) => {
       return user.login.toLowerCase().includes(searchTerm);
     });
 
-    // we need to clear the previous data
     main_container.innerHTML = "";
 
     if (matchingUsers.length === 0) {
