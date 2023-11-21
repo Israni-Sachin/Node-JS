@@ -217,12 +217,46 @@ console.log(createUserProfile(userr2));
 const print1 = (value) => {
     return value;
 };
-const print2 = (a, b) => {
-    let sum = a + b;
-    return sum;
+let print2 = (a, b) => {
+    if (typeof a === "number" && typeof b === "number") {
+        return (a + b);
+    }
+    else if (typeof a === "string" && typeof b === "string") {
+        return (a + b);
+    }
+    throw new Error("You are wrong type");
 };
 const str = print1("Hello, world!");
 const num = print1(458);
 const bool = print1(true);
 console.log(str, num, bool);
-console.log(print2([1, 2], [3, 4]));
+console.log(print2(1, 2));
+console.log(print2("1", "2"));
+function add(a, b) {
+    console.log(typeof a);
+    console.log(typeof b);
+}
+add(5, "Sachin");
+add("Sachin", 10);
+let person1 = {
+    name: "Sachin",
+    age: 20,
+    msg: "Hello",
+    city: "Ahmedabad",
+};
+console.log(person1);
+const prd1 = {
+    name: "IPhone 15 Pro",
+    price: 150000,
+    quantity: 5,
+};
+const prd2 = {
+    name: "Oneplus 11 R",
+    price: 45000,
+    quantity: 4,
+};
+const calculatePrice = (prd) => {
+    return prd.price * prd.quantity;
+};
+console.log(calculatePrice(prd1));
+console.log(calculatePrice(prd2));

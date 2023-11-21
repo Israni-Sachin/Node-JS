@@ -315,13 +315,12 @@ const print1 = <placeholder>(value: placeholder): placeholder => {
 };
 
 let print2 = <placeholder>(a: placeholder, b: placeholder): placeholder => {
-  if(typeof a==="number" && typeof b==="number"){
-    return a + b as placeholder;
+  if (typeof a === "number" && typeof b === "number") {
+    return (a + b) as placeholder;
+  } else if (typeof a === "string" && typeof b === "string") {
+    return (a + b) as placeholder;
   }
-  else if(typeof a==="string" && typeof b==="string"){
-    return a + b as placeholder;
-  }
-  throw new Error("You are wrong type")
+  throw new Error("You are wrong type");
 };
 
 const str = print1("Hello, world!");
@@ -331,3 +330,64 @@ const bool = print1(true);
 console.log(str, num, bool);
 console.log(print2(1, 2));
 console.log(print2("1", "2"));
+
+function add<T, U>(a: T, b: U) {
+  console.log(typeof a);
+  console.log(typeof b);
+}
+
+add(5, "Sachin");
+add("Sachin", 10);
+
+// interface
+
+interface Greet {
+  name: string;
+  age: number;
+  msg: string;
+}
+
+interface Greet {
+  city: string;
+}
+
+let person1: Greet = {
+  name: "Sachin",
+  age: 20,
+  msg: "Hello",
+  city: "Ahmedabad",
+};
+
+console.log(person1);
+
+interface Product {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+const prd1: Product = {
+  name: "IPhone 15 Pro",
+  price: 150000,
+  quantity: 5,
+};
+
+const prd2: Product = {
+  name: "Oneplus 11 R",
+  price: 45000,
+  quantity: 4,
+};
+
+const calculatePrice = (prd: Product) => {
+  return prd.price * prd.quantity;
+};
+
+console.log(calculatePrice(prd1));
+console.log(calculatePrice(prd2));
+
+function array<t>(arr: t[]): t {
+  return arr[0];
+}
+
+console.log(array([1,2,3]));
+

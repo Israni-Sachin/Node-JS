@@ -131,3 +131,9 @@
 
 // console.log(sum(1,2));
 // console.log(sum(1,2,3));
+
+// let str="#OceanFacts#DeepSeaHorror#MarineMysteries#UnderwaterNightmares#Oceanography#SeaCreatures#DeepBlueSecrets#DarkOceanDiscoveries#AbyssalZone#OceanWonders#UnderwaterChills#MysteriousSea#DeepSeaLife#OceanographyFacts#AquaticTerrors#MarineLife#OceanUnveiled#BeneathTheSurface#OceanHorror#UnderwaterSecrets"
+
+// let arr=str.replaceAll('#',',#').slice(1)
+// console.log(arr);
+
