@@ -132,8 +132,16 @@
 // console.log(sum(1,2));
 // console.log(sum(1,2,3));
 
-// let str="#OceanFacts#DeepSeaHorror#MarineMysteries#UnderwaterNightmares#Oceanography#SeaCreatures#DeepBlueSecrets#DarkOceanDiscoveries#AbyssalZone#OceanWonders#UnderwaterChills#MysteriousSea#DeepSeaLife#OceanographyFacts#AquaticTerrors#MarineLife#OceanUnveiled#BeneathTheSurface#OceanHorror#UnderwaterSecrets"
+let str = "";
 
-// let arr=str.replaceAll('#',',#').slice(1)
-// console.log(arr);
+let arr = str.replaceAll('#', ',#').slice(1)
+console.log(arr);
 
+sum = 0;
+let a = 60000;
+for (i = 0; i < 30; i++) {
+    sum = sum + a;
+    a = a + ((a * 10) / 100)
+    console.log(a);
+}
+console.log(sum + ((sum * 10) / 100));
